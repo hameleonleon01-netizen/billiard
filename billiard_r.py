@@ -692,10 +692,10 @@ class MainMenu(arcade.View):
                 break
 
     def start_game(self):
-        if self.selected_mode == 5:  # ВЫХОД
+        if self.selected_mode == 5:
             arcade.exit()
             return
-        elif self.selected_mode == 4:  # НАСТРОЙКИ
+        elif self.selected_mode == 4:
             settings_view = SettingsMenu(self)
             self.window.show_view(settings_view)
             return
@@ -926,7 +926,6 @@ class GameView(arcade.View):
                     SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2 + 20,
                     arcade.color.WHITE, 24, anchor_x="center", bold=True
                 )
-                # Ползунок
                 slider_x = SCREEN_WIDTH // 2 - 150
                 slider_width = 300
                 slider_height = 20
@@ -1084,7 +1083,6 @@ class GameView(arcade.View):
         arcade.draw_lrbt_rectangle_filled(0, 200, SCREEN_HEIGHT - 80, SCREEN_HEIGHT, stats_bg_color)
         arcade.draw_lrbt_rectangle_outline(0, 200, SCREEN_HEIGHT - 80, SCREEN_HEIGHT, NEON_CYAN, 2)
 
-        # Предотвращаем отрицательный счет
         display_score = max(0, self.score)
         score_color = NEON_CYAN if display_score > self.high_score else arcade.color.WHITE
         arcade.draw_text(
@@ -1185,11 +1183,9 @@ class GameView(arcade.View):
     def on_update(self, delta_time: float):
         current_time = time.time()
 
-        # Если игра на паузе - ничего не обновляем
         if self.game_state == GameState.PAUSED:
             return
 
-        # Обновление времени для режима "НА ВРЕМЯ"
         if self.game_mode == GameMode.TIMED and self.game_state != GameState.PAUSED:
             self.time_remaining -= delta_time
             if self.time_remaining <= 0:
@@ -1489,7 +1485,6 @@ class GameView(arcade.View):
 
     def return_to_menu(self):
         menu_view = MainMenu()
-        # Возвращаем настройки громкости в меню
         menu_view.music_volume = self.music_volume
         menu_view.sound_volume = self.sound_volume
         menu_view.setup_music()
