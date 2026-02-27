@@ -472,7 +472,6 @@ class SettingsMenu(arcade.View):
                     arcade.color.WHITE, 20, anchor_x="left"
                 )
 
-        # Подсказки
         if self.adjusting:
             hint = "← → - Изменить  ENTER - Применить  ESC - Отмена"
         else:
@@ -1296,7 +1295,6 @@ class GameView(arcade.View):
         self.slow_motion_time = 1.0
 
         if ball.ball_type == BallType.CUE:
-            # Биток просто возвращается на место без штрафа
             ball.center_x, ball.center_y = 300, SCREEN_HEIGHT // 2
             ball.change_x, ball.change_y = 0, 0
             ball.in_pocket = False
